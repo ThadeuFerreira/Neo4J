@@ -15,8 +15,8 @@ This project demonstrates how to ingest UniProt XML data into a Neo4j graph data
 
 bashCopy code
 
-`git clone https://github.com/yourusername/uniprot-xml-ingestion.git
-cd uniprot-xml-ingestion` 
+`git clone https://github.com/ThadeuFerreira/Neo4J.git
+cd Neo4J` 
 
 2.  Update the `docker-compose.yml` file with the appropriate Neo4j password:
 
