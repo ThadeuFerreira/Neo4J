@@ -1,0 +1,378 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://uniprot.org/uniprot" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="uniprot">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="entry">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="accession" maxOccurs="unbounded" minOccurs="0"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element name="protein">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="recommendedName">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="fullName"/>
+                          <xs:element type="xs:string" name="shortName" maxOccurs="unbounded" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="alternativeName" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="fullName"/>
+                          <xs:element type="xs:string" name="shortName" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="gene">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="name" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="type" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="organism">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="name" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="type" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dbReference">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="type"/>
+                            <xs:attribute type="xs:short" name="id"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="lineage">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="taxon" maxOccurs="unbounded" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="reference" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="citation">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="title"/>
+                          <xs:element name="authorList">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="person" maxOccurs="unbounded" minOccurs="0">
+                                  <xs:complexType>
+                                    <xs:simpleContent>
+                                      <xs:extension base="xs:string">
+                                        <xs:attribute type="xs:string" name="name" use="optional"/>
+                                      </xs:extension>
+                                    </xs:simpleContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="consortium" minOccurs="0">
+                                  <xs:complexType>
+                                    <xs:simpleContent>
+                                      <xs:extension base="xs:string">
+                                        <xs:attribute type="xs:string" name="name"/>
+                                      </xs:extension>
+                                    </xs:simpleContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="dbReference" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:string" name="type" use="optional"/>
+                                  <xs:attribute type="xs:string" name="id" use="optional"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="type" use="optional"/>
+                        <xs:attribute type="xs:string" name="date" use="optional"/>
+                        <xs:attribute type="xs:string" name="name" use="optional"/>
+                        <xs:attribute type="xs:short" name="volume" use="optional"/>
+                        <xs:attribute type="xs:string" name="first" use="optional"/>
+                        <xs:attribute type="xs:string" name="last" use="optional"/>
+                        <xs:attribute type="xs:string" name="db" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element type="xs:string" name="scope" maxOccurs="unbounded" minOccurs="0"/>
+                    <xs:element name="source" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="tissue"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:byte" name="key" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="comment" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="subcellularLocation" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="location">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:string" name="evidence" use="optional"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="conflict" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="sequence">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:string" name="resource"/>
+                                  <xs:attribute type="xs:string" name="id"/>
+                                  <xs:attribute type="xs:byte" name="version"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="type"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="link" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="uri"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="text" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="evidence" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="interactant" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="id"/>
+                          <xs:element type="xs:string" name="label" minOccurs="0"/>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="intactId" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element type="xs:string" name="organismsDiffer" minOccurs="0"/>
+                    <xs:element type="xs:byte" name="experiments" minOccurs="0"/>
+                    <xs:element name="event" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="type"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="isoform" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="id"/>
+                          <xs:element type="xs:byte" name="name"/>
+                          <xs:element name="sequence">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:string" name="type" use="optional"/>
+                                  <xs:attribute type="xs:string" name="ref" use="optional"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="type" use="optional"/>
+                  <xs:attribute type="xs:byte" name="evidence" use="optional"/>
+                  <xs:attribute type="xs:string" name="name" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="dbReference" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType mixed="true">
+                  <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:element name="property">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="type" use="optional"/>
+                            <xs:attribute type="xs:string" name="value" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="molecule">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="id" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:choice>
+                  <xs:attribute type="xs:string" name="type" use="optional"/>
+                  <xs:attribute type="xs:string" name="id" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="proteinExistence">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="type"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="keyword" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="id" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="feature" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="original" minOccurs="0"/>
+                    <xs:element type="xs:string" name="variation" minOccurs="0"/>
+                    <xs:element name="location">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="begin" minOccurs="0">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:short" name="position" use="optional"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="end" minOccurs="0">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:short" name="position" use="optional"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="position" minOccurs="0">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:short" name="position" use="optional"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="type" use="optional"/>
+                  <xs:attribute type="xs:string" name="id" use="optional"/>
+                  <xs:attribute type="xs:string" name="description" use="optional"/>
+                  <xs:attribute type="xs:byte" name="evidence" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="evidence" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element name="source" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="dbReference">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:string" name="type" use="optional"/>
+                                  <xs:attribute type="xs:string" name="id" use="optional"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="type" use="optional"/>
+                  <xs:attribute type="xs:byte" name="key" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="sequence">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:short" name="length"/>
+                      <xs:attribute type="xs:int" name="mass"/>
+                      <xs:attribute type="xs:string" name="checksum"/>
+                      <xs:attribute type="xs:date" name="modified"/>
+                      <xs:attribute type="xs:byte" name="version"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="dataset"/>
+            <xs:attribute type="xs:date" name="created"/>
+            <xs:attribute type="xs:date" name="modified"/>
+            <xs:attribute type="xs:short" name="version"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:string" name="copyright"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
